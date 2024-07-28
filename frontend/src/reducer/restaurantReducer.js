@@ -2,7 +2,7 @@
 
 import { ALL_RESTAURANTS_REQUEST, ALL_RESTAURANTS_SUCCESS } from "../constants/restaurantConstant";
 
- const initialState = {
+const initialState = {
     restaurants: [],  //fetch karneke baad... restaurants ka data iss array mein collect hoga...
 };
 

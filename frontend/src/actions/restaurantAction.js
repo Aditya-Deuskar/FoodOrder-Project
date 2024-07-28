@@ -2,7 +2,7 @@ import { ALL_RESTAURANTS_REQUEST, ALL_RESTAURANTS_SUCCESS } from "../constants/r
 import axios from "axios";
 // this content has the logic to take data from backend and store it inside the store.
 
-const getRestaurants = () => {
+export const getRestaurants = () => {
     return async (dispatch) => {
         try {
             dispatch({ type: ALL_RESTAURANTS_REQUEST });

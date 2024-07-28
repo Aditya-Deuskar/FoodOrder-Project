@@ -9,10 +9,10 @@ const reducer = combineReducers({
     restaurants: restaurantReducer,
 });
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeenhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const middleWare = [thunk];
+const middleware = [thunk];
 
-const store = createStore(reducer, combineReducers(applyMiddleware(...middleWare)));
+const store = createStore(reducer, composeenhancers(applyMiddleware(...middleware)));
 
 export default store;

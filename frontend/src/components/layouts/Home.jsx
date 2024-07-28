@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CountRestaurant from './CountRestaurant'
 import Restaurant from './Restaurant'
+import { useDispatch } from 'react-redux'
+import { getRestaurants } from '../../actions/restaurantAction'
 
-export default function Home() {
-    return <>
+export default function Home() { 
+    
+    
+    const dispatch = useDispatch();
+    useEffect(() =>{
+        dispatch(getRestaurants());
+    }, [dispatch]);
+
+
+
+
+    return(
+         <>
         <CountRestaurant />
         {/* Section tag is just like a div tag */}
         <section>
@@ -27,4 +40,5 @@ export default function Home() {
         </section>
 
     </>
+    )
 }
