@@ -3,11 +3,13 @@ import CountRestaurant from './CountRestaurant'
 import Restaurant from './Restaurant'
 import { useDispatch, useSelector } from 'react-redux'
 import { getRestaurants } from '../../actions/restaurantAction'
+import Loader from './Loader'
+import Message from './Message'
 
 export default function Home() { 
     const dispatch = useDispatch();
     
-    const {loading: restaurantLoading, error: errorLoading, restaurants} = useSelector(
+    const {loading: restaurantsLoading, error: restaurantsError, restaurants} = useSelector(
         (state) => state.restaurants
     );
 
@@ -21,6 +23,8 @@ export default function Home() {
     return(
          <>
         <CountRestaurant />
+        {restaurantsLoading ? (<Loader />) : restaurantsError ? (<Message variant = "danger">{restaurantsError}</Message>):(
+            <>
         {/* Section tag is just like a div tag */}
         <section>
             <div className="sort">
@@ -41,7 +45,8 @@ export default function Home() {
 
             </div>
         </section>
-
+            </>
+        )};
     </>
     )
 }
