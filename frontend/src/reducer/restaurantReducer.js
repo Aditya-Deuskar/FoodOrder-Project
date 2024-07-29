@@ -20,7 +20,7 @@ export const restaurantReducer = (state = initialState, action) =>{
                 ...state,
                 loading: false,
                 count: action.payload.count,
-                restaurants: action.payload,
+                restaurants: action.payload.restaurants,
             }
         
         default:

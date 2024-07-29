@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react'
 import CountRestaurant from './CountRestaurant'
 import Restaurant from './Restaurant'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getRestaurants } from '../../actions/restaurantAction'
 
 export default function Home() { 
-    
-    
     const dispatch = useDispatch();
+    
+    const {loading: restaurantLoading, error: errorLoading, restaurants} = useSelector(
+        (state) => state.restaurants
+    );
+
     useEffect(() =>{
         dispatch(getRestaurants());
     }, [dispatch]);
