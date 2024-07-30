@@ -1,4 +1,4 @@
-import { ALL_RESTAURANTS_REQUEST, ALL_RESTAURANTS_SUCCESS } from "../constants/restaurantConstant"
+import { ALL_RESTAURANTS_FAIL, ALL_RESTAURANTS_REQUEST, ALL_RESTAURANTS_SUCCESS, CLEAR_ERROR, SORT_BY_RATINGS, SORT_BY_REVIEWS, TOGGLE_VEG_ONLY } from "../constants/restaurantConstant"
 import axios from "axios";
 // this content has the logic to take data from backend and store it inside the store.
 
@@ -16,7 +16,34 @@ export const getRestaurants = () => {
                 payload: { restaurants, count },
             });
         } catch (err) {
-            console.log(err);
+            dispatch({
+                type: ALL_RESTAURANTS_FAIL,
+                payload: err.response.data.message,
+            });
         }
+    };
+};
+
+export const sortByRatings = () => {
+    return{
+        type: SORT_BY_RATINGS,
+    };
+};
+
+export const sortByReviews = () => {
+    return{
+        type: SORT_BY_REVIEWS,
+    };
+};
+
+export const toggleVegOnly = () => {
+    return{
+        type: TOGGLE_VEG_ONLY,
+    };
+};
+
+export const clearErrors = () => {
+    return{
+        type: CLEAR_ERROR,
     };
 };

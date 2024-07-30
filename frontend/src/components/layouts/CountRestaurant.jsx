@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 export default function CountRestaurant() {
   const dispatch = useDispatch();
 
-  const { loading, error, count } = useSelector(
+  const { loading, error, count, showVegOnly, pureVegRestaurantsCount } = useSelector(
     (state) => state.restaurants
   );
 
@@ -22,7 +22,12 @@ export default function CountRestaurant() {
       ) : error ? (<p> Error: {error}</p>
       ) : (
         <p className="NumOfRestro">
-          {count} < span className="Restro">Restaurants</span>
+          {showVegOnly ? pureVegRestaurantsCount : count}{" "}
+          <span className="Restro">{ // here we will write the code to display "Restaurant" if there's just single restaurant and "Restaurants" when there are multiple restaurants
+            showVegOnly ? pureVegRestaurantsCount === 1 ? "Restaurant" 
+            : "Restaurants" 
+            : count === 1 ? "Restaurant" 
+            : "Restaurants"}</span>
         </p>
       )}
 
