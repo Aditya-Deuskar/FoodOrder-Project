@@ -13,7 +13,7 @@ export default function App() {
       <div className="App">
         <Header />
         <div className="container container-fluid">
-          <Routes>
+          <Routes> //this route container will contain all the different different routes... and everywhere we'll use them
             <Route path="/" element={<Home />} />
             <Route path="/eats/stores/:id/menus" element={<Menu />} />
 
