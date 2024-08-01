@@ -21,7 +21,7 @@ export const restaurantReducer = (state = initialState, action) =>{
                 loading: false,
                 count: action.payload.count,
                 restaurants: action.payload.restaurants,
-            }
+            };
             case ALL_RESTAURANTS_FAIL:
                 return{
                     ...state,

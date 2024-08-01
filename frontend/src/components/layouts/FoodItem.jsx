@@ -2,18 +2,19 @@ import React from 'react'
 import { FaRupeeSign } from "react-icons/fa";
 
 
-export default function FoodItem() {
+export default function FoodItem({ fooditem }) {
     return (
         <div className="col-sm-12 col-md-6 col-lg-3 my-3">
             <div className="card p-3 rounded">
-                <img src="https://b.zmtcdn.com/data/pictures/chains/3/19056943/9285d69aad40b91f043583010893d7f9.jpg?fit=around|300:273&crop=300:273;*,*" alt="pizza" className="card-img-top mx-auto" />
+                <img src={fooditem.images[0].url}
+                alt='Pizza'
+                className= "card-img-top mx-auto"
+                 />
 
                 {/* heading and description */}
                 <div className="card-body d-flex flex-column">
-                    <h5 className="card-title">Veg loaded pizza</h5>
-                    <p className="fooditem_des">
-                        Crunchy, cheesy, accha hai khaneko taste bhi ekdum italian wala, kharidlo jaldi
-                    </p>
+                    <h5 className="card-title">{fooditem.name}</h5>
+                    <p className="fooditem_des">{fooditem.description}</p>
                     <p className="card-text">
                         <FaRupeeSign /> 180
                         <br />
