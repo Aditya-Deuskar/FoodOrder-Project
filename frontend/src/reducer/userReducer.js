@@ -13,6 +13,10 @@ import {
   REGISTER_USER_FAIL,
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
+  UPDATE_PROFILE_FAIL,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_RESET,
+  UPDATE_PROFILE_SUCCESS,
 } from "../constants/userConstant";
 
 export const authReducer = (
@@ -79,3 +83,42 @@ export const authReducer = (
       return state;
   }
 };
+
+
+export const userReducer = (state = {}, action) => {
+  switch (action.type) {
+    case UPDATE_PROFILE_REQUEST:
+      return{
+        ...state, 
+        loading: true,
+      };
+
+      case UPDATE_PROFILE_SUCCESS: 
+      return{
+        ...state,
+        loading: false,
+        isUpdated: action.payload,
+      };
+      
+      case UPDATE_PROFILE_RESET: 
+      return{
+        ...state,
+        loading: false,
+      };
+      
+      case UPDATE_PROFILE_FAIL: 
+      return{
+        ...state,
+        error: action.payload,
+      };
+
+      case clearErrors:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+}
