@@ -51,7 +51,7 @@ export default function Header() {
               >
                 <figure className="avatar avatar-nav">
                   <img
-                    src="/images/images.png"
+                    src={user.avatar.url}
                     alt="avatar"
                     className="rounded-circle"
                   />
