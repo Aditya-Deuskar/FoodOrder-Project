@@ -61,18 +61,18 @@ const Register = () => {
 
     dispatch(register(formData));
   };
+  //filereader helps to read the content the files in the user's local computer. we are using this to access and upload the user's avatar image
 
   const onChange = (e) => {
     if (e.target.name === "avatar") {
       const reader = new FileReader();
-      {
-        //filereader helps to read the content the files in the user's local computer. we are using this to access and upload the user's avatar image
+      reader.onload = () => {
         if (reader.readyState === 2) {
-          //indicated the reading is done
+          // indicated the reading is done
           setAvatarPreview(reader.result);
           setAvatar(reader.result);
         }
-      }
+      };
       reader.readAsDataURL(e.target.files[0]);
     } else {
       setUser({ ...user, [e.target.name]: e.target.value });

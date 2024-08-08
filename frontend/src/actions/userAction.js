@@ -23,8 +23,8 @@ import {
   UPDATE_PROFILE_FAIL,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
+  CLEAR_ERRORS,
 } from "../constants/userConstant";
-import { CLEAR_ERROR } from "../constants/restaurantConstant";
 
 //Login
 export const login = (email, password) => async (dispatch) => {
@@ -92,7 +92,7 @@ export const loadUser = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: LOAD_USER_FAIL,
-      payload: error.response.error.message,
+      payload: error.response.data.message,
     });
   }
 };
@@ -104,7 +104,7 @@ export const updateProfile = (userData) => async (dispatch) => {
       type: UPDATE_PROFILE_REQUEST,
     });
     const config = {
-      header: {
+      headers: {
         "Content-Type": "multipart/form-data",
       },
     };
@@ -143,7 +143,7 @@ export const logout = () => async (dispatch) => {
 
 export const clearErrors = () => async (dispatch) => {
   dispatch({
-    type: CLEAR_ERROR,
+    type: CLEAR_ERRORS,
   });
 };
 
@@ -153,7 +153,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
     dispatch({ type: UPDATE_PASSWORD_REQUEST });
     const config = {
       headers: {
-        Content_Type: "application/json",
+        "Content-Type": "application/json",
       },
     };
     const { data } = await axios.put(
