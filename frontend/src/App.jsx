@@ -14,13 +14,24 @@ import Profile from "./components/users/Profile";
 import UpdateProfile from "./components/users/UpdateProfile";
 import ForgotPassword from "./components/users/ForgotPassword";
 import NewPassword from "./components/users/NewPassword";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCartItems } from "./actions/cartAction";
 
 export default function App() {
   // dispatch exactly once when the component is first rendered, and check if the user is authenticated or not
   console.log(store);
+  //this will check if the user is logged in when we refresh the page
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
+
+  //this will fetch the cartitems when we log in into the account, and if we log out, this will make the cartItems as 0, cause when logged out... the cart items should be zero
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  if (user) {
+    dispatch(fetchCartItems());
+  }
+
 
   return (
     <BrowserRouter>
@@ -41,6 +52,7 @@ export default function App() {
               path="/users/resetPassword/:token"
               element={<NewPassword />}
             />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </div>
 
