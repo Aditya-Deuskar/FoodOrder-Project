@@ -9,8 +9,9 @@ export default function Header() {
   const alert = useAlert();
   const dispatch = useDispatch();
   const { user, loading } = useSelector((state) => state.auth);
+  const { cartItems } = useSelector((state) => state.cart); //this will be used to display the number of cart items on the header in a dynamic way.
 
-  const logoutHandler = () =>{
+  const logoutHandler = () => {
     dispatch(logout());
     alert.success("Logged Out Successfully");
   };
@@ -29,12 +30,14 @@ export default function Header() {
       </div>
       {/* cart 0 likha hota hai header pe vo hai yae */}
       <div className="col-12 col-md-3 mt-4 mt-md-0">
-        <span className="ml-3" id="cart">
-          Cart
-        </span>
-        <span className="ml-l" id="cart_count">
-          0
-        </span>
+        <Link to={"/cart"} style={{ textDecoration: "none" }}>
+          <span className="ml-3" id="cart">
+            Cart
+          </span>
+          <span className="ml-l" id="cart_count">
+            {cartItems.length}
+          </span>
+        </Link>
 
         {/* this is the login/ username wala part in the right corner of the header */}
         {user ? (
