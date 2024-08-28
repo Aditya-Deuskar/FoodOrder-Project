@@ -14,8 +14,11 @@ import Profile from "./components/users/Profile";
 import UpdateProfile from "./components/users/UpdateProfile";
 import ForgotPassword from "./components/users/ForgotPassword";
 import NewPassword from "./components/users/NewPassword";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCartItems } from "./actions/cartAction";
+import OrderSuccess from "./components/cart/OrderSuccess";
+import ListOrders from "./components/order/ListOrders"
+import OrderDetails from "./components/order/OrderDetails"
+//import { useDispatch } from "react-redux";
+//import { fetchCartItems } from "./actions/cartAction";
 
 export default function App() {
   // dispatch exactly once when the component is first rendered, and check if the user is authenticated or not
@@ -26,12 +29,12 @@ export default function App() {
   }, []);
 
   //this will fetch the cartitems when we log in into the account, and if we log out, this will make the cartItems as 0, cause when logged out... the cart items should be zero
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
-  if (user) {
-    dispatch(fetchCartItems());
-  }
+  //const dispatch = useDispatch();
 
+  // const { user } = useSelector((state) => state.auth);
+  // if (user) {
+  //   dispatch(fetchCartItems());
+  // }
 
   return (
     <BrowserRouter>
@@ -53,6 +56,12 @@ export default function App() {
               element={<NewPassword />}
             />
             <Route path="/cart" element={<Cart />} />
+
+            <Route path="/success" element={<OrderSuccess />} />
+            <Route path="/eats/orders/me/myOrders" element={<ListOrders />} />
+            <Route path="/eats/orders/:id" element={<OrderDetails />} />
+            <Route path="*" element={<h1>The page does not exist</h1>}/>
+
           </Routes>
         </div>
 

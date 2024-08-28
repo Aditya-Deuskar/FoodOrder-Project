@@ -7,6 +7,7 @@ import {
   removeItemFromCart,
   updateCartQuantity,
 } from "../../actions/cartAction";
+import {payment} from "../../actions/orderAction"
 
 // let fakeCartItems = [
 //   {
@@ -74,6 +75,10 @@ const Cart = () => {
     }
   };
 
+  const checkoutHandler = () => {
+    dispatch(payment(cartItems, restaurant));
+  };
+
   return (
     <>
       {cartItems.length === 0 ? (
@@ -127,11 +132,13 @@ const Cart = () => {
                         />
                         <span
                           className="btn btn-primary plus"
-                          onClick={() => increaseQty(
-                            item.foodItem,
-                            item.quantity,
-                            item.stock
-                          )}
+                          onClick={() =>
+                            increaseQty(
+                              item.foodItem,
+                              item.quantity,
+                              item.stock
+                            )
+                          }
                         >
                           +
                         </span>
@@ -177,7 +184,11 @@ const Cart = () => {
                   </span>
                 </p>
                 <hr />
-                <button id="checkout_btn" className="btn btn-primary btn-block">
+                <button
+                  id="checkout_btn"
+                  className="btn btn-primary btn-block"
+                  onClick={checkoutHandler}
+                >
                   Check Out
                 </button>
               </div>
